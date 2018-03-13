@@ -26,30 +26,49 @@ public class CiudadDAOImpl implements CiudadDAO {
 
 	@Override
 	public void insertar(Ciudad ciudad) throws DriverException {
-		// TODO Auto-generated method stub
-
+		Connection con = null;
+		PreparedStatement ps = null;
+		DataSource ds = DataSource.getInstance();
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement("INSERT INTO ciudades(codigo,Nombre,CodigoArea) VALUES (?,?,?)");
+			ps.setInt(1,ciudad.getCodigo());
+			ps.setString(2,ciudad.getNombre());
+			ps.setString(3,ciudad.getCodigoArea());
+			ps.execute();
+		}catch(SQLException e)
+		{
+			throw new DriverException("Ha ocurrido un error al conectarse a la BD",e);
+		}
+		finally {
+			try {
+				ps.close();
+				con.close();
+			}catch(SQLException e)
+			{
+				throw new DriverException("Ha ocurrido un error al desconectarse a la BD",e);
+			}
+		}
 	}
 
 	@Override
 	public void actualizar(Ciudad ciudad) throws DriverException {
-		// TODO Auto-generated method stub
-
+		Connection con = null;
+		PreparedStatement ps = null;
 	}
 
 	@Override
 	public void eliminar(Ciudad ciudad) throws DriverException {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public List<Ciudad> obtener() throws DriverException {
-		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Ciudad> ciudades = new ArrayList<Ciudad>();
-		DataSource ds = new DataSource();
+		DataSource ds = DataSource.getInstance();
 		try {
 			con = ds.getConnection(); 
 			ps = con.prepareStatement("Select * From ciudades");

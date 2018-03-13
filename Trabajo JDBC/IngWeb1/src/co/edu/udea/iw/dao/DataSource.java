@@ -14,10 +14,22 @@ import co.edu.udea.iw.exception.DriverException;
 
 public class DataSource{
 	
+	private static DataSource dataSource=null;
+	
 	private final String CLASSNAME = "com.mysql.jdbc.Driver";
 	private final String URL = "jdbc:mysql://localhost:3306/ingweb";
 	private final String USER = "root";
 	private final String PASSWORD = "root";
+	
+	private DataSource() {}
+	
+	public static DataSource getInstance(){
+		if(dataSource==null)
+		{
+			dataSource = new DataSource();
+		}
+		return dataSource;
+	}
 
 	public Connection getConnection() throws DriverException{
 		Connection con = null;
