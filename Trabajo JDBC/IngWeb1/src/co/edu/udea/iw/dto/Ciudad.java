@@ -1,15 +1,19 @@
 package co.edu.udea.iw.dto;
 
 /**	
- * 
+ * Clase para el almacenamiento y entrega de los atributos de una ciudad
  * @author Raúl Andrés Gómez Ramírez - raul.gomezr
- *
  */
 
 public class Ciudad {
 	private int codigo;
 	private String nombre;
 	private String codigoArea;
+	
+	public Ciudad()
+	{
+		
+	}
 	
 	public int getCodigo() {
 		return codigo;

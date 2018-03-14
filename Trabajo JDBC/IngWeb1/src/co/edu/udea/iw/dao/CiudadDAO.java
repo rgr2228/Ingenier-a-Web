@@ -6,7 +6,7 @@ import co.edu.udea.iw.dto.Ciudad;
 import co.edu.udea.iw.exception.DriverException;
 
 /**	
- * Define la interfaz del DAO correspondiente a ciudad
+ * En esta interfaz se definen las operaciones básicas de consulta sobre la base de datos
  * @author  Raúl Andrés Gómez Ramírez - raul.gomezr
  */
 
