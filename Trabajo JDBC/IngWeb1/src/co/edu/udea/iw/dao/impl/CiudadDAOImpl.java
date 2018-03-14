@@ -55,6 +55,11 @@ public class CiudadDAOImpl implements CiudadDAO {
 	public void actualizar(Ciudad ciudad) throws DriverException {
 		Connection con = null;
 		PreparedStatement ps = null;
+		DataSource ds = DataSource.getInstance();
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement("UPDATE ciudades SET Nombre=?, CodigoArea=? WHERE codigo=?");
+		}
 	}
 
 	@Override
