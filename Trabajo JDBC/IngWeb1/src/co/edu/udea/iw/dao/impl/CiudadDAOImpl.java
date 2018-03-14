@@ -59,12 +59,46 @@ public class CiudadDAOImpl implements CiudadDAO {
 		try {
 			con = ds.getConnection();
 			ps = con.prepareStatement("UPDATE ciudades SET Nombre=?, CodigoArea=? WHERE codigo=?");
+			ps.setString(1, ciudad.getNombre());
+			ps.setString(2, ciudad.getCodigoArea());
+			ps.setInt(3, ciudad.getCodigo());
+			ps.execute();
+		}catch(SQLException e) {
+			throw new DriverException("Ha ocurrido un error al conectarse a la BD");
+		}
+		finally {
+			try {
+				ps.close();
+				con.close();
+			}catch(SQLException e)
+			{
+				throw new DriverException("Ha ocurrido un error al desconectarse a la BD",e);
+			}
 		}
 	}
 
 	@Override
 	public void eliminar(Ciudad ciudad) throws DriverException {
-		
+		Connection con = null;
+		PreparedStatement ps = null;
+		DataSource ds = DataSource.getInstance();
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement("DELETE FROM ciudades WHERE codigo=?");
+			ps.setInt(1,ciudad.getCodigo());
+			ps.execute();
+		}catch(SQLException e) {
+			throw new DriverException("Ha ocurrido un error al conectarse a la BD");
+		}
+		finally {
+			try {
+				ps.close();
+				con.close();
+			}catch(SQLException e)
+			{
+				throw new DriverException("Ha ocurrido un error al desconectarse a la BD",e);
+			}
+		}
 	}
 
 	@Override

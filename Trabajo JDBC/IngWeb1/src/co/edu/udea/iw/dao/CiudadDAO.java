@@ -6,9 +6,8 @@ import co.edu.udea.iw.dto.Ciudad;
 import co.edu.udea.iw.exception.DriverException;
 
 /**	
- * 
- * @author  Raúl Andrés Gómez Ramírez - raul.gomezr
  * Define la interfaz del DAO correspondiente a ciudad
+ * @author  Raúl Andrés Gómez Ramírez - raul.gomezr
  */
 
 public interface CiudadDAO {
